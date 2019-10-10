@@ -19,7 +19,7 @@ const App = props => {
     // dipsatch an action here to add an item
     props.addFeature(item)
   };
-  console.log(props)
+    console.log(props)
   return (
     <div className="boxes">
       <div className="box">
@@ -34,6 +34,7 @@ const App = props => {
   );
 };
 
+
 const mapStateToProps = state => {
   return {
     car: state.car,
@@ -41,4 +42,5 @@ const mapStateToProps = state => {
     additionalPrice: state.additionalPrice
   }
 }
+
 export default connect(mapStateToProps, { addFeature, removeFeature })(App);
