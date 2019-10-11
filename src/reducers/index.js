@@ -14,7 +14,8 @@ export const intialState = {
       { id: 2, name: 'Racing detail package', price: 1500 },
       { id: 3, name: 'Premium sound system', price: 500 },
       { id: 4, name: 'Rear spoiler', price: 250 }
-    ]
+    ],
+
   };
 
 export const reducer = (state = intialState, action) => {
@@ -27,10 +28,10 @@ export const reducer = (state = intialState, action) => {
                     ...state.car,
                     features: [...state.car.features, action.payload]
                 },
-                store: state.store.filter(beep =>
-                    beep.id !== action.payload.id
-                     ),
-                additionalPrice: ( state.additionalPrice += action.payload.price )
+                additionalPrice: ( state.additionalPrice += action.payload.price ),
+                additionalFeatures: state.additionalFeatures.filter(addItem =>
+                  addItem.id !== action.payload.id
+                   ),
             }
             case REMOVE_FEATURE:
                 return {
@@ -41,7 +42,7 @@ export const reducer = (state = intialState, action) => {
                             addOn.id !== action.payload.id
                             )
                     },
-                    store: [...state.store, action.payload],
+                    additionalFeatures: [...state.additionalFeatures, action.payload],
                     additionalPrice: (state.additionalPrice -= action.payload.price)
                 }   
             default:
